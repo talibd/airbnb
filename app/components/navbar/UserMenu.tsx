@@ -5,10 +5,20 @@ import Avatar from "../Avatar";
 import { useCallback, useState } from "react";
 import MenuItem from "./MenuItem";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
+import userLoginModal from "@/app/hooks/useLoginModal";
+import { User } from "@prisma/client";
+// import { safeUser } from '@/app/types';
 
-const UserMenu = () => {
+interface UserMenuProps {
+    currentUser?: User | null
+}
+
+const UserMenu: React.FC<UserMenuProps> = ({
+    currentUser
+}) => {
 
     const registerModal = useRegisterModal();
+    const loginModal = userLoginModal();
 
     const [isOpen, setIsOpen] = useState(false);
     const toggleOpen = useCallback(() => {
@@ -66,10 +76,23 @@ const UserMenu = () => {
                     <div className="
                     flex flex-col cursor-pointer
                     ">
+                        {currentUser ? (
+   <>
+   <MenuItem onclick={()=>{}} label="My trips" />
+   <MenuItem onclick={()=>{}} label="My favorites" />
+   <MenuItem onclick={()=>{}} label="My reservations" />
+   <MenuItem onclick={()=>{}} label="My properties" />
+   <MenuItem onclick={()=>{}} label="Airbnb my home" />
+   <hr />
+   <MenuItem onclick={()=>{}} label="Logout" />
+
+   </>
+                        ) : (
                         <>
-                        <MenuItem onclick={()=>{}} label="Login" />
+                        <MenuItem onclick={loginModal.onOpen} label="Login" />
                         <MenuItem onclick={registerModal.onOpen} label="Sign Up" />
                         </>
+                        )}
                     </div>
                 </div>
             )}
