@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/navbar/Navbar";
+import ClientOnly from "./components/ClientOnly";
+import Register from "./components/modals/RegisterModal";
+import ToasterProvider from "./providers/ToasterProvider";
 
 const poppins = Poppins({ subsets: ["latin"],weight:["300"] });
 
@@ -18,7 +21,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
-      <Navbar />
+        <ClientOnly>
+          <ToasterProvider />
+          <Register />
+          <Navbar />
+        </ClientOnly>
         {children}
       </body>
     </html>
