@@ -6,11 +6,11 @@ import { useCallback, useState } from "react";
 import MenuItem from "./MenuItem";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import userLoginModal from "@/app/hooks/useLoginModal";
-import { User } from "@prisma/client";
-// import { safeUser } from '@/app/types';
+import { signOut } from "next-auth/react";
+import { SafeUser } from "@/app/types";
 
 interface UserMenuProps {
-    currentUser?: User | null
+    currentUser?: SafeUser | null
 }
 
 const UserMenu: React.FC<UserMenuProps> = ({
@@ -56,7 +56,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                 transition
                 "> <AiOutlineMenu />
                     <div className="hidden md:block">
-                        <Avatar />
+                        <Avatar src={currentUser?.image} />
                     </div>
                 </div>
             </div>
@@ -84,7 +84,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
    <MenuItem onclick={()=>{}} label="My properties" />
    <MenuItem onclick={()=>{}} label="Airbnb my home" />
    <hr />
-   <MenuItem onclick={()=>{}} label="Logout" />
+   <MenuItem onclick={()=>signOut()} label="Logout" />
 
    </>
                         ) : (
