@@ -12,7 +12,7 @@ const MenuItem: React.FC<MenuItemProp> = ({onclick,label}) => {
     py-3 
     hover:bg-neutral-100
     transition
-    font-semibold
+    font-medium
     text-zinc-500">
         {label}
     </div> 

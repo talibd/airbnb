@@ -2,4 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+.scroller::-webkit-scrollbar{
+    background-color: transparent;
+    width: 8px;
+    margin-left: 10px;
+}
+
+
+.scroller::-webkit-scrollbar-thumb{
+    background-color: rgba(128, 128, 128, 0.38);
+    width: 3px;
+    height: auto;
+    border-radius: 50px;
+}
+
+.leaflet-bottom,
+.leaflet-control,
+.leaflet-pane,
+.leaflet-top{
+    z-index: 0 !important
+}
 
