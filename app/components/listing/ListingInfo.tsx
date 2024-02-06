@@ -5,6 +5,11 @@ import { SafeUser } from "@/app/types";
 import { IconType } from "react-icons";
 import Avatar from "../Avatar";
 import ListingCategory from "./ListingCategory";
+import dynamic from "next/dynamic";
+
+const Map = dynamic(() => import('../Map'), {
+    ssr: false
+});
 
 interface ListingInfoProps {
     user: SafeUser;
@@ -17,6 +22,7 @@ interface ListingInfoProps {
         description: string;
     } | undefined;
     locationValue: string;
+    description: string;
 }
 
 
@@ -26,7 +32,8 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
     roomCount,
     bathRoomCount,
     category,
-    locationValue
+    locationValue,
+    description
 }) => {
     const { getByValue } = useCountries();
     const coordinates = getByValue(locationValue)?.latlng;
@@ -66,8 +73,10 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
             ) }
             <hr />
             <div className="text-lg font-light text-neutral-500">
-                {/* {description} */}
+                {description}
             </div>
+            <hr />
+            <Map center={coordinates} />
         </div>
      );
 }

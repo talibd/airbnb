@@ -14,7 +14,7 @@ const HeartButton: React.FC<HeartButtonProps> = ({
     currentUser
 }) => {
 
-    const { hasFovorited, toggleFavorite } = useFavorite({
+    const { hasFavorited, toggleFavorite } = useFavorite({
         listingId,
         currentUser
     });
@@ -34,7 +34,7 @@ const HeartButton: React.FC<HeartButtonProps> = ({
              />
              <AiFillHeart
              size={24}
-             className={hasFovorited ? ' fill-rose-500' : 'fill-neutral-500/70'}
+             className={hasFavorited ? ' fill-rose-500' : 'fill-neutral-500/70'}
                />
         </div>
      );
