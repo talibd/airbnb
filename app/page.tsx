@@ -1,8 +1,10 @@
 import Container from "@/app/components/Container";
-import ListingCard from "@/app/components/listing/ListingCard";
+import ListingCard from "@/app/components/listings/ListingCard";
 import EmptyState from "@/app/components/EmptyState";
 
-import getListings, {IListingsParams} from "@/app/actions/getListing";
+import getListings, { 
+  IListingsParams
+} from "@/app/actions/getListings";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import ClientOnly from "./components/ClientOnly";
 

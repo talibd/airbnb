@@ -12,7 +12,7 @@ import {
   SafeUser 
 } from "@/app/types";
 
-import HeartButton from "./HeartButton";
+import HeartButton from "../HeartButton";
 import Button from "../Button";
 import ClientOnly from "../ClientOnly";
 
@@ -108,7 +108,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
             />
           </div>
         </div>
-        <div className="font-semibold text-lg line-clamp-1">
+        <div className="font-semibold text-lg">
           {location?.region}, {location?.label}
         </div>
         <div className="font-light text-neutral-500">
