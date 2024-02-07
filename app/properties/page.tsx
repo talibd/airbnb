@@ -1,47 +1,42 @@
-import EmptyState from "../components/EmptyState";
-import ClientOnly from "../components/ClientOnly";
+import EmptyState from "@/app/components/EmptyState";
+import ClientOnly from "@/app/components/ClientOnly";
 
-import getCurrentUser from "../actions/getCurrentUser";
-import TripsClient from "./PropertiesClient";
-import getListings from "../actions/getListing";
+import getCurrentUser from "@/app/actions/getCurrentUser";
+import getListing from "@/app/actions/getListing";
+
 import PropertiesClient from "./PropertiesClient";
 
 const PropertiesPage = async () => {
-    const currentUser =await getCurrentUser();
+  const currentUser = await getCurrentUser();
 
-    if(!currentUser) {
-        return (
-            <ClientOnly>
-                <EmptyState
-                title="Unauthorized"
-                subtitle="Please login"
-                />
-            </ClientOnly>
-        )
-    }
-    const listigs = await getListings({
-        userId: currentUser.id
-    });
+  if (!currentUser) {
+    return <EmptyState
+      title="Unauthorized"
+      subtitle="Please login"
+    />
+  }
 
-    if (listigs.length === 0 ) {
-        return (
-            <ClientOnly>
-                <EmptyState 
-                title="No properties Found"
-                subtitle="Looks like you havent add properties"
-                />
-            </ClientOnly>
-        )
-    }
+  const listings = await getListing({ userId: currentUser.id });
 
+  if (listings.length === 0) {
     return (
-        <ClientOnly>
-            <PropertiesClient
-            listings={listigs}
-            currentUser={currentUser}
-            />
-        </ClientOnly>
-    )
-}
+      <ClientOnly>
+        <EmptyState
+          title="No properties found"
+          subtitle="Looks like you have no properties."
+        />
+      </ClientOnly>
+    );
+  }
 
+  return (
+    <ClientOnly>
+      <PropertiesClient
+        listings={listings}
+        currentUser={currentUser}
+      />
+    </ClientOnly>
+  );
+}
+ 
 export default PropertiesPage;
