@@ -12,7 +12,7 @@ interface HomeProps {
   searchParams: IListingsParams
 };
 
-const Home = async ({ searchParams }: HomeProps) => {
+const Home: React.FC<HomeProps> = async ({ searchParams }) => {
   const listings = await getListings(searchParams);
   const currentUser = await getCurrentUser();
 
