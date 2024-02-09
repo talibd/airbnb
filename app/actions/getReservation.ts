@@ -6,7 +6,7 @@ interface IParams {
   authorId?: string;
 }
 
-export default async function getReservations(
+export default async function getReservation(
   params: IParams
 ) {
   try {
@@ -44,7 +44,7 @@ export default async function getReservations(
       endDate: reservation.endDate.toISOString(),
       listing: {
         ...reservation.listing,
-        createdAt: reservation.listing.createAt.toISOString(),
+        createAt: reservation.listing.createAt.toISOString(),
       },
     }));
 
